@@ -89,9 +89,9 @@
 }
 
 .resident{
-    width: 22vh;
+    width: 25vh;
     /* max-width: 230px; */
-    height: 420px;
+    /* height: 420px; */
     background-color: #072226;
     color: white;
     border-radius: 5px;
