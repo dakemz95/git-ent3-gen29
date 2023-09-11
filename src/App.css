@@ -96,6 +96,7 @@
     color: white;
     border-radius: 5px;
     overflow: hidden;
+    box-shadow: 1px 2px 7px #02090a
 }
 
 .resident__image{
