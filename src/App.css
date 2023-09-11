@@ -161,43 +161,7 @@
 } 
 
 
-/* botenes de previous next */
-.btn_Card{
-    width: 50vw;
-    text-align: center;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
-    border:none;
-    position: fixed;
-    bottom:0;
-}
 
-.btn__next{
-    cursor: pointer;
-    background-color: #71A821;
-    color: white;
-    border:none;
-    padding: 5px 10px;
-    border-radius: 7px;
-    width: 80px;
-}
-.btn__next:hover{
-    background-color: #aebd98;
-}
-
-.btn__previous{
-    cursor: pointer;
-    background-color: #71A821;
-    color: white;
-    border:none;
-    border-radius: 7px;
-    border-radius: 7px;
-    width: 80px;
-}
-.btn__previous:hover{
-    background-color: #aebd98;
-}
 
 
 .img1{

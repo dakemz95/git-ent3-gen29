@@ -1,0 +1,33 @@
+/* botenes de previous next */
+.container-pagination{
+    /* width: 50vw; */
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    /* justify-content: space-between; */
+    margin-bottom: 30px;
+    border:none;
+    position: fixed;
+    bottom:0;
+    gap: 5px;
+    align-items: center;
+}
+
+.pagination__btn {
+    cursor: pointer;
+    background-color: #71A821;
+    color: white;
+    border:none;
+    border-radius: 7px;
+    border-radius: 7px;
+    width: 80px;
+}
+
+.pagination__btn:hover{
+    background-color: #aebd98;
+}
+
+.pagination__btn, actual{
+    width: auto;
+}
