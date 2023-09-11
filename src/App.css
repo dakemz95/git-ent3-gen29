@@ -163,11 +163,11 @@
 
 /* botenes de previous next */
 .btn_Card{
-    width: 20vw;
+    width: 50vw;
     text-align: center;
     display: flex;
     justify-content: space-around;
-    padding: 20px;
+    margin-bottom: 30px;
     border:none;
     position: fixed;
     bottom:0;
@@ -216,6 +216,9 @@
     .img2{
         display: none;   
        }
+    .btn_Card{
+        width: 80vw;
+    }
 }
 
 @media (max-width: 750px) {
