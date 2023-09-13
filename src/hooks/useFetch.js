@@ -11,7 +11,7 @@ const useFetch = (url) => {
     setIsLoading(true)
     axios.get(url)
         .then(response => {
-          setInfoApi(response.data)
+          setInfoApi( response.data )
           setHasError(false)
         })
         

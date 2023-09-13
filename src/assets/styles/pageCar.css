@@ -28,6 +28,11 @@
     background-color: #aebd98;
 }
 
-.pagination__btn, actual{
+.pagination__btn.actual{
     width: auto;
 }
+
+.pagination__btn.is-current {
+    background-color: #af4f0f;
+}
+

@@ -11,34 +11,57 @@ function App() {
 
   const [inputValue, setInputValue] = useState(getRandomNumber(126))
   
-  const url = `https://rickandmortyapi.com/api/location/${inputValue || 'Error'}`
+  const url = `https://rickandmortyapi.com/api/location/${inputValue}`
   const [location, getLocation, hasError, isLoading ] = useFetch(url)
 
   const [firstItem, setFirstItem] = useState(1)
   const [lastItem, setLastItem] = useState(8)
+  const [currentLocation, setCurrentLocation] = useState(null)
+  const [locationsList, setLocationsList] = useState([])
+  const [errorMessage, setErrorMessage] = useState("Hey! you must provide an id from 1 to 126 or the location's name ❌")
 
   const lastIndex = firstItem * lastItem
   const firstIndex = lastIndex - lastItem
 
   let quantyty = 8
 
-  let residents = location?.residents.slice(firstIndex,lastIndex)
-  let qtyResidts = location?.residents.length
+  let residents = currentLocation?.residents.slice(firstIndex,lastIndex)
+  // let qtyResidts = location?.residents.length
 
     
   useEffect(() => {
     getLocation()
   }, [inputValue])
+
+  useEffect(() => {
+    setLocationsList([])
+  }, [currentLocation])
+
+  useEffect( () => {
+    let tempCurrentLocation = location 
+    if ( tempCurrentLocation !== undefined && tempCurrentLocation.hasOwnProperty('results')) {
+      if (location.results.length > 1) {
+        setLocationsList(location.results)
+      } else {
+        setCurrentLocation(location.results[0])
+      }
+    } else {
+      setCurrentLocation(tempCurrentLocation)
+    }    
+  }, [location])
   
   const inputSearch = useRef()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setInputValue(inputSearch.current.value.trim())
+    let searchString = inputSearch.current.value.trim()
+    if (!Number(searchString)) {
+      searchString = `?name=${searchString}`
+    }
+    setInputValue(searchString)
     inputSearch.current.value = ""
     setFirstItem(1) 
   }
-
 
   return (
     <div className='container_principal'>
@@ -54,40 +77,49 @@ function App() {
           <button className='btn__Search'>Search</button>
         </form>
 
+        {/* Hacer esto bien bonito */}
+        <ul>
+          {
+            locationsList.map((location, i) => {
+                return <li key={i} onClick={ () => setCurrentLocation(location)}> {location.name} </li>
+            })
+          }
+        </ul>
+
         {
         isLoading 
         ? <Loader/>
         :
         (
           hasError
-        ? <h2 className='hasErr'>Hey! you must provide an id from 1 to 126 ❌</h2>
-        : <>
+          ? <h2 className='hasErr'>{ errorMessage }</h2>
+          : <>
 
-        <LocationInfo
-        location={location}
-        />
-
-        <div className='container_card'> 
-          {
-          residents?.map(residentUrl => (
-          <ResidentsCard
-          key={residentUrl}
-          residentUrl={residentUrl}
+          <LocationInfo
+            location={currentLocation}
           />
-          ))
-          }
-        </div>
-        
-        <PageCard
-        quantyty={quantyty} 
-        setFirstItem={setFirstItem}
-        firstItem={firstItem}
-        lastItem={lastItem}
-        setLastItem={setLastItem}
-        qtyResidts={location?.residents.length}
-        />
 
-        </>
+          <div className='container_card'> 
+            {
+              residents?.map(residentUrl => (
+                <ResidentsCard
+                  key={residentUrl}
+                  residentUrl={residentUrl}
+                />
+              ))
+            }
+          </div>
+          
+          <PageCard
+            quantyty={quantyty} 
+            setFirstItem={setFirstItem}
+            firstItem={firstItem}
+            lastItem={lastItem}
+            setLastItem={setLastItem}
+            qtyResidts={currentLocation?.residents.length}
+          />
+
+          </>
         )
       }
     </div>

@@ -22,9 +22,9 @@ const PageCard = ({ quantyty, firstItem, setFirstItem,  qtyResidts }) => {
 
           <div className='page-actual'>
           {
-            pageNumbers.map((pageNumbers, i) => {
-                return <button key={i} onClick={ () => setFirstItem(pageNumbers)} 
-                className={`pagination__btn actual ${pageNumbers === firstItem ? 'is-current' :" " }`}> {pageNumbers} </button>
+            pageNumbers.map((page, i) => {
+                return <button key={i} onClick={ () => setFirstItem(page)} 
+                className={`pagination__btn actual ${page === firstItem ? 'is-current' :" " }`}> {page} </button>
             })
           }
           </div>
